@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex" href="{{ url('/') }}">
-                    <div><img src="svg/instagramLogo.svg" alt="IGLOGO" style="height: 20px; border-right: 1px solid" class="pe-3"></div>
+                    <div><img src="https://cdn-icons-png.flaticon.com/512/87/87390.png" alt="IGLOGOs" style="height: 20px; border-right: 1px solid" class="pe-3"></div>
                     <div class="ps-2">Mautgram</div>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
