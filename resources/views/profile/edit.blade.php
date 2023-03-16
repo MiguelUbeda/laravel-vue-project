@@ -30,12 +30,12 @@
                         </span>
                     @enderror
                 </div>
-                <div class="row mb-3">
-                    <label for="URL" class="col-md-4 col-form-label">URL</label>
+               <div class="row mb-3">
+                    <label for="url" class="col-md-4 col-form-label">url</label>
 
-                    <input id="URL" type="text" class="form-control @error('URL') is-invalid @enderror" name="URL" value="{{ old('URL') ?? $user->profile->url  }}" required autocomplete="URL" autofocus>
+                    <input id="url" type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ old('url') ?? $user->profile->url }}" required autocomplete="url" autofocus>
 
-                    @error('URL')
+                    @error('url')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
