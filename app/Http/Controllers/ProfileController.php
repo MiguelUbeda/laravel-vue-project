@@ -7,11 +7,30 @@ use App\Models\User;
 
 class ProfileController extends Controller
 {
-    public function index($user)
+    public function index(\App\Models\User $user)
     {
-        $user = User::findOrFail($user);
-        return view('home', [
-            'user' => $user,
-        ]);
+        
+        return view('profile.index', compact('user'));
+          // [ 'user' => $user,]
+    
     }
+    public function edit(\App\Models\User $user)
+    {
+        return view('profile.edit', compact('user'));
+    }
+
+    public function update(User $user)
+    {
+        $data = request()->validate([
+            'title' => 'require',
+            'description' => 'required',
+            'url' => 'url',
+            'image' => '',
+        ]);
+        
+        $user->profile->update($data);
+
+        return redirect("/profile/{$user->id}");
+    }
+
 }

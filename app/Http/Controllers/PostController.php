@@ -3,10 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class PostController extends Controller
 {
-    public function create(){
-        return view('posts.create');
+    public function __construct(){
+        $this->middleware('auth');      //THIS WILL MAKE EVERYTHING IN HERE AUTH PROTECTED
     }
-}
+
+    public function create(){
+        return view('post.create');
+    }
+    public function store(){
+        $data = request()->validate([
+            'caption' => 'required',
+            'image' => ['required', 'image'],
+        ]);
+        
+        // $post = new \App\Post();
+        // $post->caption = $data['caption'];
+        // $post->save();
+
+        //\App\Post::create($data);
+        $imagePath = request('image')->store('uploads', 'public');
+       
+        auth()->user()->post()->create([
+            'caption' => $data['caption'],
+            'image' => $imagePath,
+        ]);
+
+        return redirect('/profile/' . auth()->user()->id);
+    }
+
+    public function show (\App\Models\Post $post){
+        return view('post.show', compact('post'));
+    }
+} 

@@ -11,28 +11,30 @@
         <div class="col-8 pt-5 ps-5">
             <div class="d-flex justify-content-between align-items-baseline">
                 <h1>{{ $user->username }}</h1>
-                <a href="#">Add New Post</a>
+                <a href="/p/create">Add New Post</a>
             </div>
+            <a href="/profile/{{ $user->id }}/edit">Edit profile</a>
             <div class="d-flex">
-                <div class="pe-4"><strong>150</strong> posts</div>
+                <div class="pe-4"><strong>{{ $user->post->count() }}</strong> posts</div>
                 <div class="pe-4"><strong>10k</strong> followers</div>
                 <div class="pe-4"><strong>200</strong> following</div>
             </div>
             <div class="pt-4"><strong>{{ $user->profile->title }}</strong></div>
             <div>{{ $user->profile->description }}</div>
-            <div><a href="#">{{ $user->profile->url ?? 'Añade tu dirección de contacto aquí'}}</a></div>
+            <div>
+                <a href="#">{{ $user->profile->url ?? 'Añade tu dirección de contacto aquí'}}</a>
+            </div>
+
         </div>
-    </div>
+        
     <div class="row pt-5">
-        <div class="col-4">
-            <img src="https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014__340.jpg" alt="" class="w-100" style="height: 250px;">
+        @foreach($user->post as $post)
+        <div class="col-4 pb-4">
+            <a href="/p/{{ $post->id }}">
+                <img src="/storage/{{ $post->image }}" alt="" class="w-100" style="height: 250px;">
+            </a>
         </div>
-        <div class="col-4">
-            <img src="https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297__340.jpg" alt="" class="w-100" style="height: 250px;">
-        </div>
-        <div class="col-4">
-            <img src="https://t4.ftcdn.net/jpg/02/91/24/27/360_F_291242770_z3XC7rJB1Mvc5jVMsEY9Dx2xMrX4sxUi.jpg" alt="" class="w-100" style="height: 250px;">
-        </div>
+        @endforeach
     </div>
 </div>
 @endsection
