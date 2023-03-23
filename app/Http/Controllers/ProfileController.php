@@ -15,21 +15,26 @@ class ProfileController extends Controller
     
     }
     public function edit(\App\Models\User $user)
-    {
+    {   
+        $this->authorize('update', $user->profile);
+
         return view('profile.edit', compact('user'));
     }
 
     public function update(\App\Models\User $user)
     {
        
-
+        $this->authorize('update', $user->profile);
+        
         $data = request()->validate([
             'title' => 'required',
             'description' => 'required',
             'url' => 'url',
             'image' => '',
         ]);
-        $user->profile->update($data);
+        
+        //Automatic check for auth user 
+        auth()->user->profile->update($data);
 
         return redirect("profile/{$user->id}");
     }
