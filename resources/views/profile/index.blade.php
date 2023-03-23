@@ -9,12 +9,13 @@
             </div>
         </div>
         <div class="col-8 pt-5 ps-5">
+            
+
+            @can ('update', $user->profile)
             <div class="d-flex justify-content-between align-items-baseline">
                 <h1>{{ $user->username }}</h1>
                 <a href="/p/create">Add New Post</a>
             </div>
-
-            @can ('update', $user->profile)
                 <a href="/profile/{{ $user-> id }}/edit">Edit Profile</a>
             @endcan
             <div class="d-flex">
