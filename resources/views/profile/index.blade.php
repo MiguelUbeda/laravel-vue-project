@@ -5,17 +5,21 @@
     <div class="row  justify-content-center d-flex" >
         <div class="col-4 pt-5" >
             <div class="text-end">
-                <img src="https://media.licdn.com/dms/image/C4D03AQHvMyL3vHmkyQ/profile-displayphoto-shrink_200_200/0/1653895935612?e=1683763200&v=beta&t=7FyF43MyFEY7EV0gcnig38GjjxbZjK-V3X0F4tOGdt8" alt="" class="rounded-circle" style="height: 150px; width: 150px">
+                <img src="{{ $user->profile->profileImage() }}" alt="" class="rounded-circle" style="height: 150px; width: 150px">
             </div>
         </div>
         <div class="col-8 pt-5 ps-5">
-            
-
-            @can ('update', $user->profile)
+      
             <div class="d-flex justify-content-between align-items-baseline">
-                <h1>{{ $user->username }}</h1>
+                <div class="d-flex  align-items-center pb-2">
+                    <h3>{{ $user->username }}</h3>
+                   <follow-button></follow-button>
+                </div>  
+                @can ('update', $user->profile)
                 <a href="/p/create">Add New Post</a>
+                @endcan
             </div>
+            @can ('update', $user->profile)
                 <a href="/profile/{{ $user-> id }}/edit">Edit Profile</a>
             @endcan
             <div class="d-flex">

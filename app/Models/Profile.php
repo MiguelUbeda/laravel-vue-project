@@ -13,6 +13,12 @@ class Profile extends Model
       'url',
       'image',
   ];
+  
+  public function profileImage()
+  {
+   $imagePath = ($this->image) ? $this->image : '/storage/uploads/DwelRoqFG54yMSRCmrf5A1fMbzR29BNriBIcuxYy.png';
+   return '/storage/' . $imagePath;
+  }
 
    public function user()
    {

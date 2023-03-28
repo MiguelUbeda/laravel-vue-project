@@ -32,10 +32,18 @@ class ProfileController extends Controller
             'url' => 'url',
             'image' => '',
         ]);
-        
-        //Automatic check for auth user 
-        auth()->user->profile->update($data);
 
+        if (request('image')) {
+            $imagePath = request('image')->store('uploads', 'public');
+
+            $imageArray = ['image' => $imagePath];
+        }
+
+        //Automatic check for auth user 
+        auth()->user()->profile->update(array_merge(
+            $data, 
+            $imageArray ?? []
+        ));
         return redirect("profile/{$user->id}");
     }
 
