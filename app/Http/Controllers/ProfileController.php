@@ -9,8 +9,13 @@ class ProfileController extends Controller
 {
     public function index(\App\Models\User $user)
     {
-        
-        return view('profile.index', compact('user'));
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+
+        $postCount = $user->post->count();
+        $followersCount = $user->profile->followers->count();
+        $followingCount = $user->following->count();
+
+        return view('profile.index', compact('user', 'follows', 'postCount', 'followersCount', 'followingCount'));
           // [ 'user' => $user,]
     
     }
