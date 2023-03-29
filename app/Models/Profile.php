@@ -16,12 +16,17 @@ class Profile extends Model
   
   public function profileImage()
   {
-   $imagePath = ($this->image) ? $this->image : '/storage/uploads/DwelRoqFG54yMSRCmrf5A1fMbzR29BNriBIcuxYy.png';
+   $imagePath = ($this->image) ? $this->image : 'uploads/DwelRoqFG54yMSRCmrf5A1fMbzR29BNriBIcuxYy.png';
    return '/storage/' . $imagePath;
   }
 
    public function user()
    {
     return $this->belongsTo(User::class);
+   }
+
+   public function followers()
+   {
+      return $this->belongsToMany(User::class);
    }
 }
